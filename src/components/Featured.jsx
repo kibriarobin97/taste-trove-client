@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import featured from "../assets/home/featured.jpg"
 import SectionTitle from "./SectionTitle";
 
@@ -18,7 +19,9 @@ const Featured = () => {
                         <p className="text-xl font-medium">WHERE CAN I GET SOME?</p>
                         <p>Whether you're craving classic comfort food or daring to explore innovative culinary creations, our menu has something to satisfy every palate. Join us for an unforgettable dining journey, where every dish tells a story and every bite is a delight.</p>
                         <div className="pt-4">
-                            <button className="btn btn-outline border-0 text-white border-b-2">Order Now</button>
+                            <Link to='/order'>
+                                <button className="btn btn-outline uppercase border-0 text-white border-b-2">Order Now</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
