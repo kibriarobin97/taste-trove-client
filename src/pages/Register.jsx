@@ -1,26 +1,44 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../assets/others/authentication1.png"
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 
 const Register = () => {
 
-    const { register, handleSubmit, formState: { errors }, } = useForm()
-    const {createUser} = useContext(AuthContext)
+    const { register, handleSubmit, reset, formState: { errors }, } = useForm()
+    const { createUser, updateUserProfile } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const onSubmit = (data) => {
         console.log(data)
         createUser(data.email, data.password)
-        .then(result => {
-            console.log(result.user)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(result => {
+                console.log(result.user)
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        console.log('user profile updated')
+                        reset();
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "User Created Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          navigate('/')
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
@@ -29,13 +47,18 @@ const Register = () => {
                 <title>Register | Taste Trove</title>
             </Helmet>
             <div className="min-h-[calc(100vh-276px)] max-w-7xl mx-auto lg:flex justify-center items-center gap-10 md:min-h-screen">
-                <div className="lg:w-1/2 w-full max-w-md p-8 space-y-3 rounded-xl text-black">
+                <div className="lg:w-1/2 w-full max-w-md px-8 space-y-3 rounded-xl text-black">
                     <h1 className="text-2xl font-bold text-center">Please Register</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <div className="space-y-1 text-sm">
                             <label htmlFor="username" className="block text-gray-500 font-medium">Name</label>
                             <input type="text" name="name" {...register("name", { required: true })} id="username" placeholder="Your Name" className="w-full px-4 py-3 rounded-md border-gray-700  text-gray-600 focus:border-violet-400" />
                             {errors.name && <span className="text-red-500">Name is required</span>}
+                        </div>
+                        <div className="space-y-1 text-sm">
+                            <label htmlFor="username" className="block text-gray-500 font-medium">Photo</label>
+                            <input type="text" name="photo" {...register("photo", { required: true })} id="username" placeholder="Photo URL" className="w-full px-4 py-3 rounded-md border-gray-700  text-gray-600 focus:border-violet-400" />
+                            {errors.photo && <span className="text-red-500">Photo URL is required</span>}
                         </div>
                         <div className="space-y-1 text-sm">
                             <label htmlFor="username" className="block text-gray-500 font-medium">Email</label>

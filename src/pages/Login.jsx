@@ -2,14 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import loginImg from "../assets/others/authentication1.png"
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from "../Providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const Login = () => {
 
-    // const captchaRef = useRef(null)
     const [disabled, setDisabled] = useState(true)
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/'
 
     const { loginUser } = useContext(AuthContext)
 
@@ -28,20 +31,21 @@ const Login = () => {
                 Swal.fire({
                     title: "Login Successful",
                     showClass: {
-                      popup: `
+                        popup: `
                         animate__animated
                         animate__fadeInUp
                         animate__faster
                       `
                     },
                     hideClass: {
-                      popup: `
+                        popup: `
                         animate__animated
                         animate__fadeOutDown
                         animate__faster
                       `
                     }
-                  });
+                });
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error.message);
@@ -64,7 +68,7 @@ const Login = () => {
                 <title>Login | Taste Trove</title>
             </Helmet>
             <div className="min-h-[calc(100vh-276px)] max-w-7xl mx-auto lg:flex flex-row-reverse justify-center items-center gap-10 md:min-h-screen">
-                <div className="lg:w-1/2 w-full max-w-md p-8 space-y-3 rounded-xl text-black">
+                <div className="lg:w-1/2 w-full max-w-md px-8 space-y-3 rounded-xl text-black">
                     <h1 className="text-2xl font-bold text-center">Please Login</h1>
                     <form onSubmit={handleLogin} className="space-y-6">
                         <div className="space-y-1 text-sm">
