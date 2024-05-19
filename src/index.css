@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.thumbs{
+    display: flex;
+    justify-content: center;
+}
+.react-tabs__tab-list{
+    margin-top: 40px !important;
+    border: none !important;
+    display: flex;
+    justify-content: center;
+}
+.react-tabs__tab{
+    border: none !important; 
+}
+.react-tabs__tab--selected {
+    color: #D99904 !important;
+    font-weight: 700;
+}

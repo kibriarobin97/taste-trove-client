@@ -31,11 +31,11 @@ const Order = () => {
             <Cover img={orderImg} title={'Order Food'}></Cover>
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
-                    <Tab>Salad</Tab>
-                    <Tab>Pizza</Tab>
-                    <Tab>Soups</Tab>
-                    <Tab>Desserts</Tab>
-                    <Tab>Drinks</Tab>
+                    <Tab><p className={`${tabIndex==0 ? 'border-[#D99904] border-b-2 pb-1': ''}`}>Salad</p></Tab>
+                    <Tab><p className={`${tabIndex==1 ? 'border-[#D99904] border-b-2 pb-1': ''}`}>Pizza</p></Tab>
+                    <Tab><p className={`${tabIndex==2 ? 'border-[#D99904] border-b-2 pb-1': ''}`}>Soups</p></Tab>
+                    <Tab><p className={`${tabIndex==3 ? 'border-[#D99904] border-b-2 pb-1': ''}`}>Desserts</p></Tab>
+                    <Tab><p className={`${tabIndex==4 ? 'border-[#D99904] border-b-2 pb-1': ''}`}>Drinks</p></Tab>
                 </TabList>
                 <TabPanel>
                     <OrderTab items={salad}></OrderTab>
