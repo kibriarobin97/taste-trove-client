@@ -1,10 +1,16 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import { FaCartPlus } from "react-icons/fa6";
+import useCart from "../hooks/useCart";
+import defaultProfile from "../assets/logo/user.png"
+
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext)
+    const [cart] = useCart()
+    // console.log(cart.length)
 
     const handleLogOut = () => {
         logOut()
@@ -17,6 +23,7 @@ const NavBar = () => {
         <li><Link to='/menu'>Our Menu</Link></li>
         <li><Link to='/order/salad'>Order Food</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
+
     </>
 
     return (
@@ -46,14 +53,23 @@ const NavBar = () => {
             <div className="navbar-end">
                 {
                     user ? <div className="flex justify-center items-center gap-1">
-                        <button onClick={handleLogOut} className="btn btn-active btn-ghost">Log Out</button>
-                        <div className="avatar online">
-                            <div className="w-10 rounded-full">
-                                <img src={user?.photoURL} />
-                            </div>
+                        <div>
+                            <Link to='/dashboard/cart'>
+                                <button className="btn btn-sm">
+                                    <FaCartPlus className="md:text-xl text-[#BB8506] text-center" />
+                                    <div className="badge badge-success bg-[#BB8506] text-white">
+                                        +{cart.length}</div>
+                                </button>
+                            </Link>
                         </div>
                         <p>{user?.displayName}</p>
-                    </div> : <Link to='/login' className="btn">Login</Link>
+                        <div className="avatar online">
+                            <div className="w-10 rounded-full">
+                                <img src={user?.photoURL || defaultProfile} />
+                            </div>
+                        </div>
+                        <button onClick={handleLogOut} className="btn btn-ghost bg-[#BB8506]">Log Out</button>
+                    </div> : <Link to='/login' className="btn bg-[#BB8506]">Login</Link>
                 }
             </div>
         </div>

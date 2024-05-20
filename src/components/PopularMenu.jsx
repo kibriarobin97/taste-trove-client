@@ -1,12 +1,13 @@
 import SectionTitle from "./SectionTitle";
 import MenuItem from "./MenuItem";
 import useMenu from "../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
 
     const [menu] = useMenu()
     const popular = menu.filter(item => item.category === 'popular')
-    
+
     return (
         <section className="p-3">
             <SectionTitle
@@ -22,7 +23,9 @@ const PopularMenu = () => {
                 }
             </div>
             <div className="mb-5 flex justify-center items-center">
-                <button className="btn btn-outline border-0 text-black border-b-2">View Full Menu</button>
+                <Link to='/menu'>
+                    <button className="btn btn-outline border-0 text-black border-b-2">View Full Menu</button>
+                </Link>
             </div>
         </section>
     );
