@@ -40,8 +40,8 @@ const Cart = () => {
         <div className="mx-10">
             <SectionTitle subHeading={'My Cart'} heading={'WANNA ADD MORE?'}></SectionTitle>
             <div className="text-center flex justify-evenly items-center">
-                <h2 className="text-2xl font-semibold">Total Order: {cart.length}</h2>
-                <h2 className="text-2xl font-semibold">Total Price: {totalPrice}</h2>
+                <h2 className="lg:text-2xl text-xl font-semibold">Total Order: {cart.length}</h2>
+                <h2 className="lg:text-2xl text-xl font-semibold">Total Price: {totalPrice}</h2>
                 <button className="btn bg-[#D1A054] font-semibold text-white">PAY</button>
             </div>
             <div>

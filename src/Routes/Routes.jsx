@@ -9,6 +9,7 @@ import Secret from "../pages/Secret";
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Root/Dashboard";
 import Cart from "../pages/Dashboard/Cart";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
     {
@@ -36,8 +37,8 @@ const router = createBrowserRouter([
           element: <Register></Register>
         },
         {
-          path: '/secret',
-          element: <PrivateRoutes><Secret></Secret></PrivateRoutes>
+          path: '/contact',
+          element: <Contact></Contact>
         }
       ]
     },
