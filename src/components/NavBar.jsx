@@ -62,13 +62,17 @@ const NavBar = () => {
                                 </button>
                             </Link>
                         </div>
-                        <p>{user?.displayName}</p>
-                        <div className="avatar online">
-                            <div className="w-10 rounded-full">
-                                <img src={user?.photoURL || defaultProfile} />
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-20 rounded-full">
+                                    <img alt="User Photo" src={user?.photoURL || defaultProfile} />
+                                </div>
                             </div>
+                            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-slate-600 bg-opacity-50 rounded-box w-40">
+                                <li><button className="font-bold hover:bg-[#D1A054]">{user?.displayName || 'User Name'}</button></li>
+                                <li><button onClick={handleLogOut} className="font-bold hover:bg-[#D1A054]">Log Out</button></li>
+                            </ul>
                         </div>
-                        <button onClick={handleLogOut} className="btn btn-ghost bg-[#BB8506]">Log Out</button>
                     </div> : <Link to='/login' className="btn bg-[#BB8506]">Login</Link>
                 }
             </div>
