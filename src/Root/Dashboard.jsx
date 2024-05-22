@@ -1,12 +1,17 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { FaCartPlus, FaHome, FaCalendarAlt, FaCalendarCheck } from "react-icons/fa";
-import { FaMoneyCheckDollar, FaBagShopping } from "react-icons/fa6";
-import { MdRateReview, MdMenu, MdEmail } from "react-icons/md";
+import { FaCartPlus, FaHome, FaCalendarAlt, FaCalendarCheck, FaUsers } from "react-icons/fa";
+import { FaMoneyCheckDollar, FaBagShopping, FaBook } from "react-icons/fa6";
+import { MdRateReview, MdMenu, MdEmail, MdRestaurant } from "react-icons/md";
+import { TfiMenuAlt } from "react-icons/tfi";
 
 
 const Dashboard = () => {
+
+    const isAdmin = true;
+
     return (
         <div>
+            {/* medium device sidebar */}
             <div className="lg:hidden navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -14,31 +19,61 @@ const Dashboard = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/user-home'>
-                                <FaHome />
-                                User Home
-                            </NavLink></li>
-                            <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/reservation'>
-                                <FaCalendarAlt />
-                                Reservation
-                            </NavLink></li>
-                            <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment'>
-                                <FaMoneyCheckDollar />
-                                payment history
-                            </NavLink></li>
-                            <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/cart'>
-                                <FaCartPlus />
-                                My Cart
-                            </NavLink></li>
-                            <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/review'>
-                                <MdRateReview />
-                                add review
-                            </NavLink></li>
-                            <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/booking'>
-                                <FaCalendarCheck />
-                                my booking
-                            </NavLink></li>
+                            {
+                                !isAdmin ? <>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/admin-home'>
+                                        <FaHome />
+                                        Admin Home
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/add-items'>
+                                        <MdRestaurant />
+                                        add items
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/manage-items'>
+                                        <TfiMenuAlt />
+                                        manage items
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/manage-bookings'>
+                                        <FaBook />
+                                        Manage bookings
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/all-users'>
+                                        <FaUsers />
+                                        all users
+                                    </NavLink></li>
+                                </>
+                                    :
+                                    <>
+                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/user-home'>
+                                            <FaHome />
+                                            User Home
+                                        </NavLink></li>
+                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/reservation'>
+                                            <FaCalendarAlt />
+                                            Reservation
+                                        </NavLink></li>
+                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment'>
+                                            <FaMoneyCheckDollar />
+                                            payment history
+                                        </NavLink></li>
+                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/cart'>
+                                            <FaCartPlus />
+                                            My Cart
+                                        </NavLink></li>
+                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/review'>
+                                            <MdRateReview />
+                                            add review
+                                        </NavLink></li>
+                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/booking'>
+                                            <FaCalendarCheck />
+                                            my booking
+                                        </NavLink></li>
+                                    </>
+                            }
+
                             <div className="divider divider-info"></div>
+
+                            {/* shared nav item */}
                             <li className="font-medium uppercase text-lg"><NavLink to='/'>
                                 <FaHome />
                                 home
@@ -79,31 +114,61 @@ const Dashboard = () => {
                         </div>
                     </Link>
                     <ul className="menu p-4 space-y-3">
-                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/user-home'>
-                            <FaHome />
-                            User Home
-                        </NavLink></li>
-                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/reservation'>
-                            <FaCalendarAlt />
-                            Reservation
-                        </NavLink></li>
-                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment'>
-                            <FaMoneyCheckDollar />
-                            payment history
-                        </NavLink></li>
-                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/cart'>
-                            <FaCartPlus />
-                            My Cart
-                        </NavLink></li>
-                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/review'>
-                            <MdRateReview />
-                            add review
-                        </NavLink></li>
-                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/booking'>
-                            <FaCalendarCheck />
-                            my booking
-                        </NavLink></li>
+                        {
+                            isAdmin ? <>
+                                <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/admin-home'>
+                                    <FaHome />
+                                    Admin Home
+                                </NavLink></li>
+                                <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/add-items'>
+                                    <MdRestaurant />
+                                    add items
+                                </NavLink></li>
+                                <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/manage-items'>
+                                    <TfiMenuAlt />
+                                    manage items
+                                </NavLink></li>
+                                <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/manage-bookings'>
+                                    <FaBook />
+                                    Manage bookings
+                                </NavLink></li>
+                                <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/all-users'>
+                                    <FaUsers />
+                                    all users
+                                </NavLink></li>
+                            </>
+                                :
+                                <>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/user-home'>
+                                        <FaHome />
+                                        User Home
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/reservation'>
+                                        <FaCalendarAlt />
+                                        Reservation
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment'>
+                                        <FaMoneyCheckDollar />
+                                        payment history
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/cart'>
+                                        <FaCartPlus />
+                                        My Cart
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/review'>
+                                        <MdRateReview />
+                                        add review
+                                    </NavLink></li>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/booking'>
+                                        <FaCalendarCheck />
+                                        my booking
+                                    </NavLink></li>
+                                </>
+                        }
+
                         <div className="divider divider-info"></div>
+
+                        {/* shared nav item */}
                         <li className="font-medium uppercase text-lg"><NavLink to='/'>
                             <FaHome />
                             home

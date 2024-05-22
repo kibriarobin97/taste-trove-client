@@ -5,11 +5,11 @@ import Menu from "../pages/Menu";
 import Order from "../pages/Order";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Secret from "../pages/Secret";
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Root/Dashboard";
 import Cart from "../pages/Dashboard/Cart";
 import Contact from "../pages/Contact";
+import AllUsers from "../pages/Dashboard/AllUsers";
 
 const router = createBrowserRouter([
     {
@@ -44,11 +44,17 @@ const router = createBrowserRouter([
     },
     {
       path: '/dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
       children: [
         {
           path: '/dashboard/cart',
           element: <Cart></Cart>
+        },
+
+        //admin route
+        {
+          path: '/dashboard/all-users',
+          element: <AllUsers></AllUsers>
         }
       ]
     }
