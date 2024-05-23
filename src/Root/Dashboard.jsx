@@ -3,11 +3,12 @@ import { FaCartPlus, FaHome, FaCalendarAlt, FaCalendarCheck, FaUsers } from "rea
 import { FaMoneyCheckDollar, FaBagShopping, FaBook } from "react-icons/fa6";
 import { MdRateReview, MdMenu, MdEmail, MdRestaurant } from "react-icons/md";
 import { TfiMenuAlt } from "react-icons/tfi";
+import useAdmin from "../hooks/useAdmin";
 
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <div>
@@ -20,7 +21,7 @@ const Dashboard = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             {
-                                !isAdmin ? <>
+                                isAdmin ? <>
                                     <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/admin-home'>
                                         <FaHome />
                                         Admin Home
