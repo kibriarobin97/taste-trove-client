@@ -188,6 +188,7 @@ const Dashboard = () => {
                         </NavLink></li>
                     </ul>
                 </div>
+                
                 {/* dashboard content */}
                 <div className="flex-1 max-w-5xl mx-auto">
                     <Outlet></Outlet>
