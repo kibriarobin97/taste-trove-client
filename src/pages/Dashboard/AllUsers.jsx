@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
 
@@ -56,6 +57,9 @@ const AllUsers = () => {
 
     return (
         <div className="mx-10">
+            <Helmet>
+                <title>All-User | Taste-Trove</title>
+            </Helmet>
             <SectionTitle subHeading={'How many??'} heading={'MANAGE ALL USERS'}></SectionTitle>
             <div className="text-center flex justify-evenly items-center">
                 <h2 className="lg:text-2xl text-xl font-semibold">Total User: {users.length}</h2>
