@@ -20,20 +20,22 @@ const UpdateItem = () => {
 
     const { register, handleSubmit } = useForm()
 
-    const onSubmit = async () => {
-        const imageFile = { image: item.image[0] }
+    const onSubmit = async (data) => {
+        const imageFile = { image: data.image[0] }
+        console.log(imageFile)
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         })
+        console.log(res.data?.data?.display_url)
         if (res.data.success) {
             const menuItem = {
-                name: item.name,
-                price: parseFloat(item.price),
-                category: item.category,
-                recipe: item.recipe,
-                image: res.data.data.display_url
+                name: data.name,
+                price: parseFloat(data.price),
+                category: data.category,
+                recipe: data.recipe,
+                image: res.data?.data?.display_url
             }
             const menuRes = await axiosSecure.patch(`/menu/${item?._id}`, menuItem)
             console.log(menuRes.data)
