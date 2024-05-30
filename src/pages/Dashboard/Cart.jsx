@@ -3,6 +3,7 @@ import SectionTitle from "../../components/SectionTitle";
 import useCart from "../../hooks/useCart";
 import { MdDeleteForever } from "react-icons/md";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
 
@@ -42,7 +43,12 @@ const Cart = () => {
             <div className="text-center flex justify-evenly items-center">
                 <h2 className="lg:text-2xl text-xl font-semibold">Total Order: {cart.length}</h2>
                 <h2 className="lg:text-2xl text-xl font-semibold">Total Price: {totalPrice}</h2>
-                <button className="btn bg-[#D1A054] font-semibold text-white">PAY</button>
+                {
+                    cart.length ? <Link to='/dashboard/payment'>
+                    <button className="btn bg-[#D1A054] btn-ghost font-semibold text-white">PAY</button>
+                </Link> :
+                <button disabled className="btn bg-[#D1A054] btn-ghost font-semibold text-white">PAY</button>
+                }
             </div>
             <div>
                 <div className="overflow-x-auto mt-8">

@@ -53,7 +53,7 @@ const Dashboard = () => {
                                             <FaCalendarAlt />
                                             Reservation
                                         </NavLink></li>
-                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment'>
+                                        <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment-history'>
                                             <FaMoneyCheckDollar />
                                             payment history
                                         </NavLink></li>
@@ -148,7 +148,7 @@ const Dashboard = () => {
                                         <FaCalendarAlt />
                                         Reservation
                                     </NavLink></li>
-                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment'>
+                                    <li className="font-medium uppercase text-lg"><NavLink to='/dashboard/payment-history'>
                                         <FaMoneyCheckDollar />
                                         payment history
                                     </NavLink></li>
