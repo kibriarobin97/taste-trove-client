@@ -4,11 +4,13 @@ import { AuthContext } from "../Providers/AuthProvider";
 import { FaCartPlus } from "react-icons/fa6";
 import useCart from "../hooks/useCart";
 import defaultProfile from "../assets/logo/user.png"
+import useAdmin from "../hooks/useAdmin";
 
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext)
+    const [isAdmin] = useAdmin()
     const [cart] = useCart()
     // console.log(cart.length)
 
@@ -23,7 +25,12 @@ const NavBar = () => {
         <li><Link to='/menu'>Our Menu</Link></li>
         <li><Link to='/order/salad'>Order Food</Link></li>
         <li><Link to='/contact'>Contact</Link></li>
-
+        {
+            user && isAdmin && <li><Link to='/dashboard/admin-home'>Dashboard</Link></li>
+        }
+        {
+            user && !isAdmin && <li><Link to='/dashboard/user-home'>Dashboard</Link></li>
+        }
     </>
 
     return (
@@ -44,7 +51,7 @@ const NavBar = () => {
                     </div>
                 </Link>
             </div>
-            <div className="navbar-end hidden lg:flex">
+            <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navItems}
                 </ul>

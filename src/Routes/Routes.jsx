@@ -15,6 +15,10 @@ import AdminRoute from "./AdminRoute";
 import ManageItems from "../pages/Dashboard/ManageItems";
 import UpdateItem from "../pages/Dashboard/UpdateItem";
 import Payment from "../pages/Dashboard/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
+import AdminHome from "../pages/Dashboard/AdminHome";
+import UserHome from "../pages/Dashboard/UserHome";
+import Secret from "../pages/Secret";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact></Contact>
+      },
+      {
+        path: '/secret',
+        element: <Secret></Secret>
       }
     ]
   },
@@ -59,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/payment',
         element: <Payment></Payment>
+      },
+      {
+        path: '/dashboard/payment-history',
+        element: <PaymentHistory></PaymentHistory>
+      },
+      {
+        path: '/dashboard/user-home',
+        element: <UserHome></UserHome>
       },
 
       //admin route
@@ -78,6 +94,10 @@ const router = createBrowserRouter([
         path: '/dashboard/update-item/:id',
         element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`)
+      },
+      {
+        path: '/dashboard/admin-home',
+        element: <AdminHome></AdminHome>
       }
     ]
   }
